@@ -1,20 +1,49 @@
-﻿@inject Microsoft.AspNetCore.Identity.SignInManager<Microsoft.AspNetCore.Identity.IdentityUser> signInManager;
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<AppointmentScheduling.Models.ApplicationUser> signInManager
+@using AppointmentScheduling.Models
+@* 
+@inject SignInManager<ApplicationUser> signInManager *@
+
+@* <ul class="navbar-nav ms-auto mb-2 mb-sm-0 d-flex align-items-center">
+    @if (signInManager.IsSignedIn(User))
+    {
+        <li class="nav-item me-3">
+            <span class="nav-link text-white mb-0">Hello, @User.Identity.Name!</span>
+        </li>
+        <li class="nav-item">
+            <form method="post" id="logoutForm" asp-controller="Account" asp-action="Logout" class="d-inline mb-0">
+                <button type="submit" class="btn btn-link nav-link text-white p-0 m-0">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Account" asp-action="Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Account" asp-action="Login">Sign In</a>
+        </li>
+    }
+</ul> *@
+
+
 @if (signInManager.IsSignedIn(User))
 {
-
+    <form method="post" id="logoutForm" asp-action="Logoff" asp-controller="Account">
+        <ul class="nav navbar-nav">
+            <li class="text-white nav-link">Hello,@User.Identity.Name!</li>
+            <li><a class="text-white nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    </form>
 }
-
 else
 {
     <ul class="nav navbar-nav">
-        @* <li>@Html.ActionLink("Sign Up","Register","Account",routeValues:null,htmlAttributes:new { id="register"})</li> *@
-        <li class="nav-item">
-            <a class="nav-link" id="registerLink" asp-controller="Account" asp-action="Register">Register</a>
+             <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Account" asp-action="Register">Register</a>
         </li>
         <li class="nav-item">
-            @* @Html.ActionLink("Sign In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) *@
-            <a class="nav-link" id="registerLink" asp-controller="Account" asp-action="Login">Sign In</a>
+            <a class="nav-link text-white" asp-controller="Account" asp-action="Login">Sign In</a>
         </li>
     </ul>
 }
-
